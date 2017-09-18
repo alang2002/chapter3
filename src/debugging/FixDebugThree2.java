@@ -1,4 +1,6 @@
-// This application displays some math facts
+package debugging; 
+
+//This application displays some math facts
 public class FixDebugThree2
 {
    public static void main(String args[])
