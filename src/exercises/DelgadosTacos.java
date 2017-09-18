@@ -6,17 +6,14 @@ import java.util.Scanner;
 public class DelgadosTacos {
 
 	public static void main(String[] args) {
-		String pattern = "0.00";
-		DecimalFormat df = new DecimalFormat(pattern);
-		
 		System.out.println("Welcome to Delgados Tacos Truck!");
 		tacoTruck();
 		menu();
 
 	}
 	
-	@SuppressWarnings("unused")
 	public static void menu() {
+		@SuppressWarnings("resource")
 		Scanner keyboard = new Scanner(System.in);
 		double tacoPrice = 1.99;
 		double enchilada = 2.75;
@@ -87,10 +84,34 @@ public class DelgadosTacos {
 		burritoPriceTotal = amountBurritosOrdered * burrito;
 		extraToppingsPriceTotal = amountExtraToppingsOrdered * extraToppings;
 		chimichangaPriceTotal = amountChimichangasOrdered * chimichanga;
+		
+		double totalPrice = tacoPriceTotal + enchiladaPriceTotal + waterPriceTotal + churrosPriceTotal 
+				+ mexicanCandyPriceTotal + popPriceTotal + nachosPriceTotal + burritoPriceTotal 
+				+ extraToppingsPriceTotal + chimichangaPriceTotal;
+		
+		System.out.println("In total, you have ordered: " + amountTacosOrdered 
+				+ " tacos, " + amountEnchiladasOrdered + " enchiladas, " 
+				+ amountWatersOrdered + " waters, " + amountChurrosOrdered 
+				+ " churros, " + amountMexicanCandyOrdered + " mexican candy, "
+				+ amountPopsOrdered + " pops, " + amountNachosOrdered 
+				+ " nachos, " + amountBurritosOrdered + " burritos, " 
+				+ amountExtraToppingsOrdered + " extra toppings, and "
+				+ amountChimichangasOrdered + " chimichangas.");
+		
+		salesTax(totalPrice);
 	}
 	
-	public static void salesTax() { 
+	public static void salesTax(double totalPrice) { 
+		String pattern = "0.00";
+		DecimalFormat df = new DecimalFormat(pattern);
 		
+		double salesTaxPrice = totalPrice * 0.075;
+		double salesTaxTPrice = totalPrice + salesTaxPrice;
+		String salesTaxTotalPrice = df.format(salesTaxTPrice);
+		String totalPriceFormatted = df.format(totalPrice);
+		
+		System.out.println("Your total price is (without tax) " + totalPriceFormatted);
+		System.out.println("Your total price is (with tax) " + salesTaxTotalPrice);
 		
 	}
 	
